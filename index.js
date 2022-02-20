@@ -1,6 +1,8 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import dotenv from "dotenv";
+import jwt from 'jsonwebtoken';
+import {auth} from "./middleware/auth.js"
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
@@ -38,7 +40,8 @@ async function getUserByEmail(email){
 }
 
 
-app.get("/", async(req,res)=>{
+
+app.get("/",auth, async(req,res)=>{
     res.send('Welcome to the website')
 })
 
@@ -108,7 +111,9 @@ app.post("/users/signup", async (req, res) => {
         return;
     }
 
-    res.send(isPasswordMatch);
+    const token = jwt.sign({id: userFromDb._id}, process.env.SECRET_KEY);
+
+    res.send({message:"Succesfull login", token:token});
   });
 
 
