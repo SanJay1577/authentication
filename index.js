@@ -41,7 +41,11 @@ async function getUserByEmail(email){
 
 
 
-app.get("/",auth, async(req,res)=>{
+app.get("/", async(req,res)=>{
+    res.send('Welcome to the website')
+})
+
+app.get("/check",auth, async(req,res)=>{
     res.send('Welcome to the website')
 })
 
