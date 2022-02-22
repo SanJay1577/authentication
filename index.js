@@ -103,11 +103,11 @@ app.post("/users/signup", async (req, res) => {
     const userEmailFromDb = await getUserByEmail(email)
     console.log(userFromDb, userEmailFromDb);
 
-    if(!userFromDb||
-        !userEmailFromDb){
-        res.status(400).send({message:"Invalid Credentials"})
-        return;
-    }
+    // if(!userFromDb||
+    //     !userEmailFromDb){
+    //     res.status(400).send({message:"Invalid Credentials"})
+    //     return;
+    // }
 
     const storedDbPassword = userFromDb.password;
     const isPasswordMatch = await bcrypt.compare(password,storedDbPassword);
@@ -123,7 +123,6 @@ app.post("/users/signup", async (req, res) => {
 
     res.send({message:"Succesfull login", token:token});
   });
-
 
 console.log("nodemon working")
 
