@@ -3,10 +3,12 @@ import bcrypt from 'bcrypt';
 import dotenv from "dotenv";
 import jwt from 'jsonwebtoken';
 import {auth} from "./middleware/auth.js"
+import cors from 'cors'
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 app.use(express.json());
+app.use(cors());
 import {MongoClient} from 'mongodb'
 
 
@@ -68,6 +70,7 @@ app.delete("/users", async(req,res)=>{
 app.post("/users/signup", async (req, res) => {
     const {name, password, email} = req.body;
     console.log(name, password, email);
+    console.log(req.body);
     const isUserExist = await getUserByName(name);
     const isEmailExist = await getUserByEmail(email)
     console.log(isUserExist, isEmailExist);
