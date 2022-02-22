@@ -118,7 +118,8 @@ app.post("/users/signup", async (req, res) => {
         return;
     }
 
-    const token = jwt.sign({id: userFromDb._id}, process.env.SECRET_KEY);
+    const token = jwt.sign({password: userFromDb.password, email:userFromDb.email}
+        , process.env.SECRET_KEY);
 
     res.send({message:"Succesfull login", token:token});
   });
