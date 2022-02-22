@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import{useState} from 'react';
 
@@ -15,6 +15,7 @@ function App() {
 
   async function registerUser(event){
     event.preventDefault()
+    
     const response = await fetch('https://authentication-shortner.herokuapp.com/users/signup',
     {
       method:'POST',
@@ -29,7 +30,8 @@ function App() {
     })
   
     const data = await response.json();
-    console.log(data);
+    alert(data.message);
+
   }
 
 

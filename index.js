@@ -84,7 +84,7 @@ app.post("/users/signup", async (req, res) => {
         !/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#%&]).{8,}$/g.test(password)
     )
     {
-        res.status(400).send({message:"Password doesnot match"})
+        res.status(400).send({message:"Password doesnot match the requirement"})
         return;
     }
 
